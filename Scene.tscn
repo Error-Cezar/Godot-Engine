@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8tkyn032tkph"]
+
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_35kwb"]
+[ext_resource type="Texture2D" uid="uid://dnm5afnbx13iw" path="res://icon.svg" id="1_oyv3d"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_35kwb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oyv3d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite2D"]
+max_polyphony = 10
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+drag_top_margin = 0.75
+editor_draw_limits = true
