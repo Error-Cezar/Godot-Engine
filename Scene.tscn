@@ -10,6 +10,14 @@ b = Vector2(-264, 8)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_35kwb")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, -7.62939e-06)
+scale = Vector2(4.84375, 3.6875)
+texture = ExtResource("1_oyv3d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite2D"]
+max_polyphony = 10
+
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
 drag_top_margin = 0.75
