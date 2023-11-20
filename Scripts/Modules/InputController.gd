@@ -1,19 +1,10 @@
 extends Node
 
-var InputFunctions = {
-	
-}
+var InputFunctions = { }
 
-var ReleaseFunctions = {
-	
-}
+var ReleaseFunctions = { }
 
-var HoldFunctions = {
-	
-}
-
-var preloader
-var InputController
+var HoldFunctions = { }
 
 func OnPress(Key, Execute):
 	if not Key in InputFunctions: InputFunctions[Key] = []
@@ -39,9 +30,6 @@ func Check(event: InputEventKey):
 			f.call()
 			
 	if (not Hold and Pressed) and Keycode in InputFunctions:
-		InputController = Preloader.LoadModule("SoundController")
-		
-		InputController.test()
 		for f in InputFunctions[Keycode]:
 			f.call()
 			

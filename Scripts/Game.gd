@@ -9,11 +9,11 @@ var offX = 0
 var offY = 0
 
 func InitializeModules():
-	InputController = Preloader.LoadModule("InputController")
+	InputController = Frameworks.LoadModule("InputController")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Preloader.Initialize()
+	Frameworks.Initialize()
 	InitializeModules()
 	var Camera: Camera2D = get_node("Camera2D")
 
@@ -24,8 +24,8 @@ func _ready():
 	print("GAME SERVER INIT")
 	
 	InputController.OnPress(KEY_Z, func():
-		player.stream = clash
-		player.play()
+		#player.stream = clash
+		#player.play()
 		print("Z PRESS")
 	)
 
@@ -50,8 +50,8 @@ func _ready():
 	)
 
 	InputController.OnRelease(KEY_Z, func():
-		player.stream = bone
-		player.play()
+		#player.stream = bone
+		#player.play()
 		print("Z RELEASE")
 	)
 
