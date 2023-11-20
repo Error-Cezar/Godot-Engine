@@ -12,7 +12,6 @@ var HoldFunctions = {
 	
 }
 
-var preloader
 var InputController
 
 func OnPress(Key, Execute):
@@ -39,7 +38,7 @@ func Check(event: InputEventKey):
 			f.call()
 			
 	if (not Hold and Pressed) and Keycode in InputFunctions:
-		InputController = Preloader.LoadModule("SoundController")
+		InputController = Frameworks.LoadModule("SoundController")
 		
 		InputController.test()
 		for f in InputFunctions[Keycode]:

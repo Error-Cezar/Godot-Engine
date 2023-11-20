@@ -1,18 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8tkyn032tkph"]
+[gd_scene load_steps=4 format=3 uid="uid://c8tkyn032tkph"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_35kwb"]
-[ext_resource type="Texture2D" uid="uid://dnm5afnbx13iw" path="res://icon.svg" id="1_oyv3d"]
+[ext_resource type="Texture2D" uid="uid://ddt4hw3uti64c" path="res://Resources/ut-heart.png" id="2_hl7xl"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0b0dg"]
+a = Vector2(337.411, 124.672)
+b = Vector2(-264, 8)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_35kwb")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_oyv3d")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite2D"]
-max_polyphony = 10
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
 drag_top_margin = 0.75
 editor_draw_limits = true
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(7, 1)
+texture = ExtResource("2_hl7xl")
+offset = Vector2(-7, -1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+polygon = PackedVector2Array(5, -3, 5, 6, -5, 6, -5, -5, 5, -5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+top_level = true
+position = Vector2(-40, -16)
+rotation = -0.191986
+shape = SubResource("SegmentShape2D_0b0dg")
+debug_color = Color(0.133333, 0.356863, 1, 0.419608)

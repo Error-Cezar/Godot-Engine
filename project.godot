@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Preloader="*res://Scripts/preloader.gd"
+Frameworks="*res://Scripts/preloader.gd"
 
 [display]
 
