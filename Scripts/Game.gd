@@ -16,24 +16,56 @@ func InitializeModules():
 func _ready():
 	Frameworks.Initialize()
 	InitializeModules()
+	# ---
 	var Camera: Camera2D = get_node("Camera2D")
 
 	PlayerController.Register(get_node("CharacterBody2D"))
 
-	# var bone = preload("res://Sounds/BONE.mp3")
-	# var clash = preload("res://Sounds/CLASH.mp3")
 	print("------------------")
 	print("GAME SERVER INIT")
 	
 	InputController.OnPress(KEY_Z, func():
+		print("Z ON")
 		PlayerController.MoveY = 1
 	)
 	InputController.OnRelease(KEY_Z, func():
+		print("Z OFF")
 		PlayerController.MoveY = 0
 	)
+	
+	InputController.OnPress(KEY_S, func():
+		print("S ON")
+		PlayerController.MoveY = -1
+	)
+	InputController.OnRelease(KEY_S, func():
+		print("S OFF")
+		if PlayerController.MoveY != -1:
+			return 
+		PlayerController.MoveY = 0
+	)
+	
+	InputController.OnPress(KEY_D, func():
+		print("D ON")
+		PlayerController.MoveX = 1
+	)
+	
+	InputController.OnRelease(KEY_D, func():
+		if PlayerController.MoveX != 1:
+			return 
+		print("D OFF", PlayerController.MoveX)
+		PlayerController.MoveX = 0
+	)
+	
+	InputController.OnPress(KEY_Q, func():
+		PlayerController.MoveX = -1
+	)
+	
+	InputController.OnRelease(KEY_Q, func():
+		if PlayerController.MoveX != -1:
+			return 
+		PlayerController.MoveX = 0
+	)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	currentdelta = delta
 
