@@ -1,6 +1,6 @@
 extends Node
 
-var gravity = 500 #ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var MoveX = 0
 var MoveY = 0
@@ -52,7 +52,7 @@ func OnPhysics(delta):
 							JumpLock = false
 							YGo = 0
 						YGo -= 100
-						Player.velocity = CurrentY
+						Player.velocity.y = CurrentY
 					elif Player.velocity.y < 0 and not JumpLock:
 						JumpLock = true
 						Player.velocity.y -= CurrentY

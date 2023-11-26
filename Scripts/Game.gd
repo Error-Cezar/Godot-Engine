@@ -60,6 +60,10 @@ func _ready():
 		PlayerController.MoveX = -1
 	)
 	
+	InputController.OnPress(KEY_F, func():
+		PlayerController.Players[0]["Mode"] = 2
+	)
+	
 	InputController.OnRelease(KEY_Q, func():
 		if PlayerController.MoveX != -1:
 			return 
