@@ -17,8 +17,6 @@ func _ready():
 	Frameworks.Initialize()
 	InitializeModules()
 	# ---
-	var Camera: Camera2D = get_node("Camera2D")
-
 	PlayerController.Register(get_node("CharacterBody2D"))
 
 	print("------------------")
