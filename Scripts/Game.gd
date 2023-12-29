@@ -4,6 +4,7 @@ var currentdelta = 0
 
 var InputController  = null
 var PlayerController = null
+var TextBlitter      = null
 
 var offX = 0
 var offY = 0
@@ -11,13 +12,14 @@ var offY = 0
 func InitializeModules():
 	InputController  = Frameworks.LoadModule("InputController")
 	PlayerController = Frameworks.LoadModule("PlayerController")
+	TextBlitter      = Frameworks.LoadModule("TextBlitter")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Frameworks.Initialize()
 	InitializeModules()
 	# ---
-	PlayerController.Register(get_node("CharacterBody2D"))
+	PlayerController.Register(get_node("Player"))
 
 	print("------------------")
 	print("GAME SERVER INIT")
@@ -67,6 +69,11 @@ func _ready():
 			return 
 		PlayerController.MoveX = 0
 	)
+	
+	var ok = TextBlitter.init("balls", get_node("TextBox"))
+	print(ok["write"])
+	ok["write"].call("im making progress\n$[color:RND]$[speed:0.9]this is cool right?")
+
 
 func _process(delta):
 	currentdelta = delta

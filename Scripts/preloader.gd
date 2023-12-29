@@ -39,3 +39,6 @@ func LoadModule(Name: String):
 	if !Asset: Debug("No Module Found"); return false
 	
 	return Asset
+
+func wait(time):
+	await get_tree().create_timer(time).timeout

@@ -1,18 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8tkyn032tkph"]
+[gd_scene load_steps=8 format=3 uid="uid://c8tkyn032tkph"]
 
-[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_35kwb"]
+[ext_resource type="Script" path="res://balls.gd" id="1_j2hy7"]
 [ext_resource type="Texture2D" uid="uid://ddt4hw3uti64c" path="res://Resources/ut-heart.png" id="2_hl7xl"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_0b0dg"]
-a = Vector2(192.514, 131.143)
-b = Vector2(31.3361, 100.832)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_0t22m"]
-a = Vector2(31.0029, 2.97019)
-b = Vector2(123.276, 20.9062)
+[ext_resource type="Texture2D" uid="uid://b78xob8u7iccn" path="res://Resources/Bubble/Battle/leftwide.png" id="4_6gmdi"]
+[ext_resource type="Texture2D" uid="uid://bu2aclqgbdg0g" path="res://Resources/Template/encounter.png" id="4_y2kht"]
+[ext_resource type="Texture2D" uid="uid://dnm5afnbx13iw" path="res://icon.svg" id="5_dsb34"]
+[ext_resource type="Texture2D" uid="uid://bnnn5rgrmyslq" path="res://Resources/pixel.png" id="6_xa1bf"]
+[ext_resource type="Texture2D" uid="uid://cmo5heyd8btej" path="res://Resources/Buttons/ACT 1.png" id="7_isixk"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_35kwb")
+script = ExtResource("1_j2hy7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -7.62939e-06)
@@ -23,40 +20,87 @@ ignore_rotation = false
 drag_top_margin = 0.75
 editor_draw_limits = true
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="."]
+light_mask = 32
+position = Vector2(-43, -1)
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(7, 1)
 texture = ExtResource("2_hl7xl")
 offset = Vector2(-7, -1)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CharacterBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 polygon = PackedVector2Array(8, 2, 8, 8, -8, 8, -8, -8, 8, -8)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Background" type="Node2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-top_level = true
-position = Vector2(-40, -16)
-rotation = -0.191986
-shape = SubResource("SegmentShape2D_0b0dg")
-debug_color = Color(0.133333, 0.356863, 1, 0.419608)
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+modulate = Color(0, 0, 0, 1)
+visibility_layer = 32
+z_index = -100
+position = Vector2(-84, -122)
+scale = Vector2(640.25, 477.25)
+texture = ExtResource("6_xa1bf")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
+[node name="Editor" type="Sprite2D" parent="Background"]
+position = Vector2(1, -0.25)
+scale = Vector2(0.8, 0.796173)
+texture = ExtResource("4_y2kht")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
-top_level = true
-position = Vector2(-38, -137)
-rotation = -0.191986
-shape = SubResource("SegmentShape2D_0b0dg")
-debug_color = Color(0.133333, 0.356863, 1, 0.419608)
+[node name="TextBox" type="Sprite2D" parent="."]
+position = Vector2(-188, -117)
+texture = ExtResource("4_6gmdi")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D/StaticBody2D"]
+[node name="Pos" type="Sprite2D" parent="TextBox"]
+position = Vector2(-100, -34)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_dsb34")
+metadata/default = Vector2(0, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D/StaticBody2D"]
-top_level = true
-position = Vector2(-8, 34)
-rotation = -0.191986
-shape = SubResource("SegmentShape2D_0t22m")
-one_way_collision = true
-debug_color = Color(0.0901961, 0.698039, 0.560784, 0.419608)
+[node name="AttackHidder" type="Node2D" parent="."]
+position = Vector2(-159, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackHidder"]
+light_mask = 992
+position = Vector2(310.159, 96.3452)
+texture = ExtResource("7_isixk")
+
+[node name="PointLight2D" type="PointLight2D" parent="AttackHidder"]
+position = Vector2(157, 7.49997)
+scale = Vector2(32, 23.75)
+blend_mode = 1
+range_item_cull_mask = 32
+texture = ExtResource("6_xa1bf")
+
+[node name="PointLight2D2" type="PointLight2D" parent="AttackHidder"]
+position = Vector2(359, 89)
+scale = Vector2(6.03805, 4.39999)
+blend_mode = 2
+range_item_cull_mask = 32
+texture = ExtResource("6_xa1bf")
+
+[node name="BattleBox" type="Node2D" parent="."]
+
+[node name="L" type="Sprite2D" parent="BattleBox"]
+modulate = Color(1, 0.501961, 1, 1)
+position = Vector2(252, 358)
+texture = ExtResource("6_xa1bf")
+offset = Vector2(0, -10)
+
+[node name="R" type="Sprite2D" parent="BattleBox"]
+modulate = Color(0.192157, 1, 1, 1)
+position = Vector2(291, 358)
+texture = ExtResource("6_xa1bf")
+offset = Vector2(0, -10)
+
+[node name="U" type="Sprite2D" parent="BattleBox"]
+modulate = Color(1, 1, 0.113725, 1)
+position = Vector2(281, 318)
+texture = ExtResource("6_xa1bf")
+offset = Vector2(-10, 10)
+
+[node name="D" type="Sprite2D" parent="BattleBox"]
+modulate = Color(1, 0.172549, 0.317647, 1)
+position = Vector2(271.5, 378)
+texture = ExtResource("6_xa1bf")
+offset = Vector2(0, -10)
