@@ -42,3 +42,17 @@ func LoadModule(Name: String):
 
 func wait(time):
 	await get_tree().create_timer(time).timeout
+
+var procc = {}
+
+func proc_check(Name: String, execute):
+	if Name in procc:
+		procc[Name] = null
+	procc[Name] = execute
+
+func OnProccess():
+	for v in procc:
+		procc[v].call()
+
+func tween():
+	return create_tween()

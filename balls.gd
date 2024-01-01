@@ -1,29 +1,20 @@
 extends Node
 
-var currentdelta = 0
-
-var InputController  = null
-var PlayerController = null
-var TextBlitter      = null
+var BoxController  = null
 
 func InitializeModules():
-	InputController  = Frameworks.LoadModule("InputController")
-	PlayerController = Frameworks.LoadModule("PlayerController")
-	TextBlitter      = Frameworks.LoadModule("TextBlitter")
+	BoxController = Frameworks.LoadModule("BoxController")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("go")
 	Frameworks.Initialize()
 	InitializeModules()
 	# ---
+	var info = {"U" = get_node("U"), "D" = get_node("D"), "L" = get_node("L"), "R" = get_node("R")}
+	var pos = {U = info["U"].position.y, D = info["D"].position.y, L = info["L"].position.x, R = info["R"].position.x}
+	BoxController.init("Box", info, pos)
+	BoxController.int()
 
-
-func _process(delta):
-	currentdelta = delta
-
-func _unhandled_input(event):
-	if event is InputEventKey:
-		InputController.Check(event)
-
-func _physics_process(delta):
-	PlayerController.OnPhysics(delta)
+func _physics_process(_delta):
+	Frameworks.OnProccess()

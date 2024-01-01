@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c8tkyn032tkph"]
 
-[ext_resource type="Script" path="res://balls.gd" id="1_j2hy7"]
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_35kwb"]
 [ext_resource type="Texture2D" uid="uid://ddt4hw3uti64c" path="res://Resources/ut-heart.png" id="2_hl7xl"]
 [ext_resource type="Texture2D" uid="uid://b78xob8u7iccn" path="res://Resources/Bubble/Battle/leftwide.png" id="4_6gmdi"]
 [ext_resource type="Texture2D" uid="uid://bu2aclqgbdg0g" path="res://Resources/Template/encounter.png" id="4_y2kht"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cmo5heyd8btej" path="res://Resources/Buttons/ACT 1.png" id="7_isixk"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_j2hy7")
+script = ExtResource("1_35kwb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, -7.62939e-06)
@@ -33,6 +33,7 @@ offset = Vector2(-7, -1)
 polygon = PackedVector2Array(8, 2, 8, 8, -8, 8, -8, -8, 8, -8)
 
 [node name="Background" type="Node2D" parent="."]
+z_index = -4096
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
 modulate = Color(0, 0, 0, 1)
@@ -104,3 +105,17 @@ modulate = Color(1, 0.172549, 0.317647, 1)
 position = Vector2(271.5, 378)
 texture = ExtResource("6_xa1bf")
 offset = Vector2(0, -10)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="BattleBox"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-34, 49)
+polygon = PackedVector2Array(10, 10, -10, 10, -10, -10, 10, -10)
+
+[node name="U" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(1, 1, 0.113725, 1)
+position = Vector2(-23, 62)
+texture = ExtResource("6_xa1bf")
+offset = Vector2(-10, 10)
