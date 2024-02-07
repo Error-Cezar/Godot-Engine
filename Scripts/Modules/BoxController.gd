@@ -32,8 +32,19 @@ func metadata(Data):
 
 	module.Box      = Data["Box"]
 	module.Rotation = Data["Rotation"]
+	
+	module.move = func(data = {}):
+		for D in data:
+			var Val  = null
+			var Name = null
+			if typeof(D) == 4:
+				Val = data[D]
+			else:
+				Val = D
+			print("Moving ", Name, " to ", Val)
+			
 	module.test = func():
-		print(module.Box["U"])
+		print(module["UU"])
 
 
 	return module
@@ -57,6 +68,7 @@ func init(Name: String, Box: Dictionary, Position: Dictionary = {L = 0, R = 0, U
 	return Data
 
 func int():
+	print("go")
 	Frameworks.proc_check("BOX_CHECKER", func():
 		for v in BoxAsset:
 			var Data = BoxAsset[v]
@@ -70,10 +82,11 @@ func int():
 				var Vec = "Y"
 				if stat in Data["XWall"]: Vec = "X";
 				if Data[stat + "U"] == Pos: continue;
-
+				print("go?")
 				var tween = Frameworks.tween()
 
 				Data[stat + "U"] = Pos
+				print(Vec)
 				match Vec:
 					"X":
 						if Box.position.x != Pos:
