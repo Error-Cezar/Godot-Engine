@@ -1,57 +1,74 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy02hl385gr5v"]
+[gd_scene load_steps=7 format=3 uid="uid://dy02hl385gr5v"]
 
-[ext_resource type="Script" path="res://balls.gd" id="1_gdjsg"]
-[ext_resource type="Texture2D" uid="uid://bnnn5rgrmyslq" path="res://Resources/pixel.png" id="2_7povg"]
-[ext_resource type="Texture2D" uid="uid://gvpbf22oc2af" path="res://Resources/Buttons/FIGHT 1.png" id="3_nbmsr"]
+[ext_resource type="Script" path="res://test.gd" id="1_3xxif"]
+[ext_resource type="Shader" path="res://Scripts/Shader/box.gdshader" id="1_dgvug"]
+[ext_resource type="Texture2D" uid="uid://4ji3hn1i6t5q" path="res://Resources/Battle/border.png" id="2_a83qj"]
+[ext_resource type="Texture2D" uid="uid://ddt4hw3uti64c" path="res://Resources/ut-heart.png" id="4_g8pfu"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7p028"]
-blend_mode = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gioux"]
+shader = ExtResource("1_dgvug")
+shader_parameter/fgcolor = Vector4(1, 1, 1, 1)
+shader_parameter/bgcolor = Vector4(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofnqu"]
+size = Vector2(5, 100)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_gdjsg")
+script = ExtResource("1_3xxif")
 
-[node name="L" type="Sprite2D" parent="."]
-modulate = Color(1, 0.501961, 1, 1)
-position = Vector2(40, 391)
-scale = Vector2(0.25, 6.65)
-texture = ExtResource("2_7povg")
-offset = Vector2(0, -10)
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+material = SubResource("ShaderMaterial_gioux")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 282.0
+offset_top = 211.0
+offset_right = 382.0
+offset_bottom = 311.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(50, 53)
+texture = ExtResource("2_a83qj")
+region_rect = Rect2(0, 0, 15, 15)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
-[node name="R" type="Sprite2D" parent="."]
-modulate = Color(0.192157, 1, 1, 1)
-position = Vector2(448, 331)
-scale = Vector2(0.25, 6.65)
-texture = ExtResource("2_7povg")
-offset = Vector2(0, -10)
+[node name="StaticBody2D" type="StaticBody2D" parent="NinePatchRect"]
 
-[node name="U" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 0.113725, 1)
-position = Vector2(323, 235)
-scale = Vector2(1, 0.25)
-texture = ExtResource("2_7povg")
+[node name="Left" type="CollisionShape2D" parent="NinePatchRect/StaticBody2D"]
+position = Vector2(-63, 130)
+shape = SubResource("RectangleShape2D_ofnqu")
+debug_color = Color(0.709804, 0, 0.211765, 0.419608)
 
-[node name="D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.172549, 0.317647, 1)
-position = Vector2(276, 392)
-scale = Vector2(24, 0.25)
-texture = ExtResource("2_7povg")
-offset = Vector2(0, -10)
+[node name="Right" type="CollisionShape2D" parent="NinePatchRect/StaticBody2D"]
+position = Vector2(-63, 130)
+shape = SubResource("RectangleShape2D_ofnqu")
+debug_color = Color(0.709804, 0, 0.211765, 0.419608)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-light_mask = 3
-position = Vector2(244, 148)
-texture = ExtResource("3_nbmsr")
+[node name="Up" type="CollisionShape2D" parent="NinePatchRect/StaticBody2D"]
+position = Vector2(-63, 130)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ofnqu")
+debug_color = Color(0.32549, 0.117647, 0.407843, 0.419608)
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="Down" type="CollisionShape2D" parent="NinePatchRect/StaticBody2D"]
+position = Vector2(-63, 130)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ofnqu")
+debug_color = Color(0.333333, 0.0196078, 1, 0.419608)
 
-[node name="Polygon2D" type="Polygon2D" parent="CanvasGroup"]
-visible = false
-position = Vector2(1, -4)
-polygon = PackedVector2Array(-6, -2, 644, 1, 643, 487, -6, 490)
+[node name="Player" type="CharacterBody2D" parent="."]
+light_mask = 32
+position = Vector2(239, 210)
 
-[node name="Polygon2D2" type="Polygon2D" parent="CanvasGroup"]
-material = SubResource("CanvasItemMaterial_7p028")
-position = Vector2(-149, -31)
-scale = Vector2(3.04293, 1)
-color = Color(0.172549, 0.313726, 0.733333, 1)
-polygon = PackedVector2Array(91.6573, 89, 226.724, 184, 112.032, 256, 230.997, 400, 91, 428)
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(7, 1)
+texture = ExtResource("4_g8pfu")
+offset = Vector2(-7, -1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(8, 2, 8, 8, -8, 8, -8, -8, 8, -8)
