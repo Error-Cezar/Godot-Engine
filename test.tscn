@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy02hl385gr5v"]
+[gd_scene load_steps=9 format=3 uid="uid://dy02hl385gr5v"]
 
 [ext_resource type="Script" path="res://test.gd" id="1_3xxif"]
 [ext_resource type="Shader" path="res://Scripts/Shader/box.gdshader" id="1_dgvug"]
 [ext_resource type="Texture2D" uid="uid://4ji3hn1i6t5q" path="res://Resources/Battle/border.png" id="2_a83qj"]
 [ext_resource type="Texture2D" uid="uid://ddt4hw3uti64c" path="res://Resources/ut-heart.png" id="4_g8pfu"]
+[ext_resource type="Texture2D" uid="uid://b78xob8u7iccn" path="res://Resources/Bubble/Battle/leftwide.png" id="5_7hlu3"]
+[ext_resource type="Texture2D" uid="uid://dnm5afnbx13iw" path="res://icon.svg" id="6_1vdkb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gioux"]
 shader = ExtResource("1_dgvug")
@@ -15,6 +17,7 @@ size = Vector2(5, 100)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_3xxif")
+metadata/_edit_horizontal_guides_ = [-147.0]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 material = SubResource("ShaderMaterial_gioux")
@@ -36,6 +39,7 @@ patch_margin_left = 5
 patch_margin_top = 5
 patch_margin_right = 5
 patch_margin_bottom = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NinePatchRect"]
 
@@ -63,12 +67,23 @@ debug_color = Color(0.333333, 0.0196078, 1, 0.419608)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 light_mask = 32
-position = Vector2(239, 210)
+position = Vector2(333, 267)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
+self_modulate = Color(0.796078, 0, 0.258824, 1)
 position = Vector2(7, 1)
 texture = ExtResource("4_g8pfu")
 offset = Vector2(-7, -1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 polygon = PackedVector2Array(8, 2, 8, 8, -8, 8, -8, -8, 8, -8)
+
+[node name="TextBox" type="Sprite2D" parent="."]
+position = Vector2(208, 103)
+texture = ExtResource("5_7hlu3")
+
+[node name="Pos" type="Sprite2D" parent="TextBox"]
+position = Vector2(-100, -34)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_1vdkb")
+metadata/default = Vector2(0, 0)

@@ -104,7 +104,7 @@ func init(Name: String, Blitter: Sprite2D):
 	Data["Color"]   = "BLACK"
 	Data["Pause"]   = false
 	Data["Write"]   = false
-	Data["Speed"]   = 0.1
+	Data["Speed"]   = 0.05
 	Blitter.set_meta("Default", Blitter.position)
 
 	Data = Asset(Data)
